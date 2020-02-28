@@ -1,0 +1,16 @@
+/**
+* @snippet       Display FREE if Price Zero or Empty - WooCommerce Single Product
+* @how-to        add to functions.php in your childtheme
+* @author        Peter Kuipers
+* @testedwith    WooCommerce 3.9
+* @Change free in line 13 to whatever you want to show instead of the value 0.00
+*/
+  
+add_filter( 'woocommerce_get_price_html', 'kyzoe_price_free_zero_empty', 9999, 2 );
+   
+function kyzoe_price_free_zero_empty( $price, $product ){
+    if ( '' === $product->get_price() || 0 == $product->get_price() ) {
+        $price = '<span class="woocommerce-Price-amount amount">FREE</span>';
+    }  
+    return $price;
+}
